@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Money Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333333;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .tracking-list {
+            margin-top: 20px;
+        }
+        .tracking-list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .tracking-list th,
+        .tracking-list td {
+            padding: 10px;
+            border: 1px solid #cccccc;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Money Tracker</h1>
+        <form id="expenseForm">
+            <div class="form-group">
+                <label for="expenseName">Expense Name</label>
+                <input type="text" id="expenseName" placeholder="Enter expense name" required>
+            </div>
+            <div class="form-group">
+                <label for="expenseAmount">Expense Amount</label>
+                <input type="number" id="expenseAmount" placeholder="Enter expense amount" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Add Expense</button>
+            </div>
+        </form>
+        <div class="tracking-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Expense Name</th>
+                        <th>Expense Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="expenseList">
+                    <!-- Expense items will be dynamically added here using JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            document.getElementById("expenseForm").addEventListener("submit", function(e) {
+                e.preventDefault();
+                var expenseName = document.getElementById("expenseName").value;
+                var expenseAmount = document.getElementById("expenseAmount").value;
+                var expenseList = document.getElementById("expenseList");
+
+                var row = document.createElement("tr");
+                row.innerHTML = "<td>" + expenseName + "</td><td>" + expenseAmount + "</td>";
+                expenseList.appendChild(row);
+
+                document.getElementById("expenseName").value = "";
+                document.getElementById("expenseAmount").value = "";
+            });
+        };
+    </script>
+</body>
+</html>
